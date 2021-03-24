@@ -22,14 +22,13 @@
           <q-separator dark vertical />
           <q-btn-dropdown stretch flat align="center" icon="font_download">
             <q-list>
-              <q-item :clickable="lang === 'zh'" v-close-popup="lang === 'zh'" :disable="lang === 'en'" @click="checkLang('en')">
+              <q-item
+                v-for="langOp in langOptions"
+                :key="langOp.value"
+                :clickable="langOp.value !== lang" v-close-popup="langOp.value === lang" :disable="lang === langOp.value" @click="checkLang(langOp
+               .value)">
                 <q-item-section>
-                  <q-item-label>English</q-item-label>
-                </q-item-section>
-              </q-item>
-              <q-item v-close-popup="lang === 'en'" :disable="lang === 'zh'" :clickable="lang === 'en'" @click="checkLang('zh')">
-                <q-item-section>
-                  <q-item-label>中文</q-item-label>
+                  <q-item-label>{{langOp.label}}</q-item-label>
                 </q-item-section>
               </q-item>
             </q-list>
@@ -118,6 +117,7 @@ import settings from '@/settings.json';
 import { PermissionModule } from '../store/modules/permission';
 import { TagsViewModule, ITagView } from '@/store/modules/tags';
 import { RouteRecord, Route, RouteConfig } from 'vue-router';
+import languages from 'quasar/lang/index.json';
 @Component({
   name: 'Layouts',
   components: {
@@ -273,7 +273,14 @@ export default class extends Vue {
   private toProfile() {
     this.$router.push({ path: '/profile/index' });
   }
-  created() {}
+  private langOptions: {label: string, value: string}[] = [];
+  appLanguages = languages.filter((lang) => ['zh-hans', 'en-us'].includes(lang.isoName));
+  created() {
+    this.langOptions = this.appLanguages.map((lang) => ({
+      label: lang.nativeName,
+      value: lang.isoName,
+    }));
+  }
 }
 </script>
 <style lang="scss">
