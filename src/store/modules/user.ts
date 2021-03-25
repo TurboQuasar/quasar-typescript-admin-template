@@ -107,7 +107,7 @@ class User extends VuexModule implements IUserState {
     if (this.token === '') {
       throw Error('LogOut: token is undefined!');
     }
-    await await axios.request({
+    await axios.request({
       url: '/api/mock-api/v1/user/logout',
       method: 'post',
     });

@@ -38,6 +38,7 @@ module.exports = configure(function(ctx) {
     ],
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
+      env: require('dotenv').config({path: `.env.${process.env.NODE_ENV}`}).parsed,
       vueRouterMode: 'hash', // available values: 'hash', 'history'
       transpile: false,
       // Add dependencies for transpiling with Babel (Array of string/regex)
@@ -99,7 +100,7 @@ module.exports = configure(function(ctx) {
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
       https: false,
-      port: 9002,
+      port: process.env.DEV_SERVER_PORT,//9002,
       open: true, // opens browser window automatically
       proxy: {
         // proxy all requests starting with /api to jsonplaceholder
