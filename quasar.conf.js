@@ -15,7 +15,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // build list
 var ManifestPlugin = require('webpack-manifest-plugin');
 const webpack = require('webpack');
-// const settings = require('./src/settings.json');
+const settings = require('./src/settings.json');
 module.exports = configure(function(ctx) {
   return {
     // https://quasar.dev/quasar-cli/supporting-ts
@@ -100,12 +100,12 @@ module.exports = configure(function(ctx) {
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
       https: false,
-      port: process.env.DEV_SERVER_PORT,//9002,
+      port: settings.devServerPort,
       open: true, // opens browser window automatically
       proxy: {
         // proxy all requests starting with /api to jsonplaceholder
         '/api': {
-          target: 'http://127.0.0.1:' + 9004,
+          target: 'http://127.0.0.1:' + settings.mockServerPort,
           changeOrigin: true,
           pathRewrite: {
             '^/api': '',

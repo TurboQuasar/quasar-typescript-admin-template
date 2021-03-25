@@ -1,5 +1,5 @@
 {
-  "policy": "https://www.github.com/dirkhe1051931999",
+  "policy": "https://github.com/TurboQuasar/quasar-typescript-admin-template/tree/master-gxk inspired by hejian",
   "title": "Quasar admin",
   "errorLog": ["production"],
   "logUrl": "/",
@@ -10,6 +10,6 @@
   "showFooter": true,
   "adminName": ["admin"],
   "errorCode": [],
-  "succCode": [],
+  "successCode": [],
   "defaultErrorMsg": "Network Error, please contact engineer"
 }

@@ -4,7 +4,7 @@ const getTable = async (ctx) => {
   ctx.body = {
     data: result,
     success: true,
-    errorcode: 0,
+    errorCode: 0,
   };
 };
 module.exports = getTable;
